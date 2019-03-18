@@ -69,8 +69,8 @@
 
 (defn create-config [config]
   (proxy [WorkerConfig] [(ConfigDef.) {}]
-    (getString [key]
-      (str (get config key)))))
+    (originals []
+      config)))
 
 (defn create-instance [content]
   (let [instance (new org.apache.kafka.connect.storage.gcs.GCSOffsetBackingStore)
