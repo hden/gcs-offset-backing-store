@@ -7,6 +7,7 @@
            [com.google.cloud.storage BlobId
                                      BlobInfo
                                      StorageOptions
+                                     StorageException
                                      Storage$BlobWriteOption
                                      Storage$BlobSourceOption])
   (:gen-class
@@ -54,7 +55,13 @@
 
 (defn read-blob [{:keys [storage bucket path]}]
   (let [blob-id (create-blob-id bucket path)]
-    (cheshire/parse-string (String. (.readAllBytes storage blob-id (create-blob-source-options))))))
+    (try
+      (cheshire/parse-string (String. (.readAllBytes storage blob-id (create-blob-source-options))))
+      (catch StorageException ex
+        ;; Create a new file when there isn't one.
+        (if (= 404 (.getCode ex))
+          {}
+          (throw ex))))))
 
 (defn write-blob! [{:keys [storage bucket path]} offsets]
   (let [blob-info (create-blob-info bucket path)
@@ -79,8 +86,9 @@
 (defn -configure [this config]
   (.superconfigure this config)
   (let [state (.state this)
-        bucket (.getString config "offset.storage.gcs.bucket")
-        path (.getString config "offset.storage.gcs.path")
+        config (into {} (.originals config))
+        bucket (get config "offset.storage.gcs.bucket")
+        path (get config "offset.storage.gcs.path")
         storage (.getService (StorageOptions/getDefaultInstance))]
     (swap! state merge {:bucket bucket :path path :storage storage})))
 
