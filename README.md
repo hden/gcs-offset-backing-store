@@ -1,6 +1,4 @@
-# gcs-offset-backing-store
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhden%2Fgcs-offset-backing-store.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhden%2Fgcs-offset-backing-store?ref=badge_shield)
-
+# gcs-offset-backing-store [![CircleCI](https://circleci.com/gh/hden/gcs-offset-backing-store/tree/master.svg?style=svg)](https://circleci.com/gh/hden/gcs-offset-backing-store/tree/master) [![codecov](https://codecov.io/gh/hden/gcs-offset-backing-store/branch/master/graph/badge.svg)](https://codecov.io/gh/hden/gcs-offset-backing-store) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhden%2Fgcs-offset-backing-store.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhden%2Fgcs-offset-backing-store?ref=badge_shield)
 
 A Kafka Connect OffsetBackingStore backed by Google Cloud Storage.
 
