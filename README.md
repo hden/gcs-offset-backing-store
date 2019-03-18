@@ -1,4 +1,4 @@
-# gcs-offset-backing-store
+# gcs-offset-backing-store [![CircleCI](https://circleci.com/gh/hden/gcs-offset-backing-store/tree/master.svg?style=svg)](https://circleci.com/gh/hden/gcs-offset-backing-store/tree/master) [![codecov](https://codecov.io/gh/hden/gcs-offset-backing-store/branch/master/graph/badge.svg)](https://codecov.io/gh/hden/gcs-offset-backing-store)
 
 A Kafka Connect OffsetBackingStore backed by Google Cloud Storage.
 
